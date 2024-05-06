@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { counterReducer } from './state/app.reducers';
+import { counterReducer, userReducer } from './state/app.reducers';
 import { CounterComponent } from './components/pages/counter/counter.component';
 import { Counter2Component } from './components/pages/counter2/counter2.component';
 
@@ -18,7 +18,7 @@ import { Counter2Component } from './components/pages/counter2/counter2.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({"counterStoreSlice": counterReducer}, {}),
+    StoreModule.forRoot({"counterStoreSlice": counterReducer, "userStoreSlice": userReducer}, {}),
     EffectsModule.forRoot([])
   ],
   providers: [],

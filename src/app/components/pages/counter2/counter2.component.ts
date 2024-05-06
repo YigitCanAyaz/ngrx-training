@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { actionIncreaseCounter, actionDecreaseCounter } from 'src/app/state/app.actions';
+import { actionIncreaseCounter, actionDecreaseCounter, actionUpdateUserStateModel } from 'src/app/state/app.actions';
 import { getCounterSelector } from 'src/app/state/app.selectors';
-import { CounterState } from 'src/app/state/app.state';
+import { CounterState, UserState } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-counter2',
@@ -14,7 +14,7 @@ export class Counter2Component implements OnInit, OnDestroy{
 
   counterSubscription? : Subscription;
 
-  constructor(private store : Store<CounterState>) {
+  constructor(private store : Store<CounterState>, private userStore : Store<UserState>) {
     
   }
 
@@ -26,6 +26,10 @@ export class Counter2Component implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.counterSubscription?.unsubscribe();
+  }
+
+  updateUser() {
+    this.userStore.dispatch(actionUpdateUserStateModel({user: {userId: 10, userName: "ahmet", userEmail: "ahmet@outlook.com"}}))
   }
 
   increaseCounter() {

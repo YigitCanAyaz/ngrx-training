@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
-import { AppState, CounterState } from "./app.state";
-import { actionDecreaseCounter, actionIncreaseCounter } from "./app.actions";
+import { AppState, CounterState, UserState } from "./app.state";
+import { actionDecreaseCounter, actionIncreaseCounter, actionUpdateUserStateModel } from "./app.actions";
 
 export const counterReducer = createReducer<CounterState>({ Counter: 0 },
     on(actionIncreaseCounter, (state): CounterState => {
@@ -8,5 +8,11 @@ export const counterReducer = createReducer<CounterState>({ Counter: 0 },
     }),
     on(actionDecreaseCounter, (state): CounterState => {
         return { ...state, Counter: state.Counter - 1 };
+    })
+);
+
+export const userReducer = createReducer<UserState>({ userStateModel: {userId: 0, userEmail: "", userName: ""} },
+    on(actionUpdateUserStateModel, (state, actionData) : UserState => {
+        return {...state, userStateModel: actionData.user}
     })
 );

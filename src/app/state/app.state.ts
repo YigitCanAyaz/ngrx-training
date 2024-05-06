@@ -7,7 +7,7 @@ export interface CounterState extends AppState {
 }
 
 export interface UserState extends AppState {
-    userStateModel: UserState;
+    userStateModel: UserStateModel;
 }
 
 export interface UserStateModel {
