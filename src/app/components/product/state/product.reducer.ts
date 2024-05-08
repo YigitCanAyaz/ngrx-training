@@ -3,7 +3,10 @@ import { ProductState } from "./product.state";
 import { productActionAdd, productActionRemove, productActionUpdate, productUpdateCurrency } from "./product.action";
 
 const initialProductState = {
-    productList: [],
+    productList: [
+        {id: 1, name: "kalem", price: 100 },
+        {id: 2, name: "silgi", price: 50 },
+    ],
     currency: "tr"
 }
 
@@ -18,7 +21,7 @@ export const productReducer = createReducer<ProductState>(initialProductState,
     }),
     on(productActionUpdate, (state, action): ProductState => {
         console.log("productActionUpdate Original State", state);
-        const updatedProductsList = state.productList.map(product => product.id === action.productToUpdate.id ? action.productToUpdate : product)
+        const updatedProductsList = state.productList.map(product => product.id == action.productToUpdate.id ? action.productToUpdate : product)
         return { ...state, productList: updatedProductsList };
     }),
     on(productUpdateCurrency, (state, action) : ProductState => {

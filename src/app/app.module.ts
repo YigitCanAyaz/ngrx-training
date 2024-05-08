@@ -9,7 +9,7 @@ import { counterReducer, userReducer } from './state/app.reducers';
 import { CounterComponent } from './components/pages/counter/counter.component';
 import { Counter2Component } from './components/pages/counter2/counter2.component';
 import { ProductModule } from './components/product/product.module';
-
+import { HttpClientModule } from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +20,8 @@ import { ProductModule } from './components/product/product.module';
     BrowserModule,
     AppRoutingModule,
     ProductModule,
-    StoreModule.forRoot({"counterStoreSlice": counterReducer, "userStoreSlice": userReducer}, {}),
+    HttpClientModule,
+    StoreModule.forRoot({ "counterStoreSlice": counterReducer, "userStoreSlice": userReducer }, {}),
     EffectsModule.forRoot([])
   ],
   providers: [],
