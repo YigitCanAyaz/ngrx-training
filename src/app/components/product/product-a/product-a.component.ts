@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProductState, ProductStateModel } from '../state/product.state';
-import { getProductsSelector } from '../state/product.selector';
-import { productActionAdd, productActionRemove, productActionUpdate, productUpdateCurrency } from '../state/product.action';
+import { getProductError, getProductsSelector } from '../state/product.selector';
+import { productActionAdd, productActionLoad, productActionRemove, productActionUpdate, productUpdateCurrency } from '../state/product.action';
 
 @Component({
   selector: 'app-product-a',
@@ -15,8 +15,17 @@ export class ProductAComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.productStore.select(getProductsSelector).subscribe(x => {
+    this.productStore.select(getProductError).subscribe(x => {
+      if (x != undefined) {
+        alert("Product Yüklenirken Bir Hata Meydana Geldi.")
+      }
+    })
+
+    this.productStore.select(getProductsSelector).subscribe(x => { 
       this.productList = x;
+      if (x.length == 0) {
+        this.productStore.dispatch(productActionLoad());
+      }
     });
   }
 

@@ -4,6 +4,8 @@ import { ProductAComponent } from './product-a/product-a.component';
 import { ProductBComponent } from './product-b/product-b.component';
 import { StoreModule } from '@ngrx/store';
 import { productReducer } from './state/product.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import ProductEffect from './state/product.effect';
 
 
 
@@ -14,7 +16,8 @@ import { productReducer } from './state/product.reducer';
   ],
   imports: [
     CommonModule,
-    StoreModule.forFeature("ProductSliceState", productReducer)
+    StoreModule.forFeature("ProductSliceState", productReducer),
+    EffectsModule.forFeature([ProductEffect])
   ]
 })
 export class ProductModule { }

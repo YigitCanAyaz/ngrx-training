@@ -8,6 +8,9 @@ export const getProductsSelector = createSelector(getProductState, state => stat
 
 export const getProductCurrencySelector = createSelector(getProductState, state => state.currency);
 
+export const getProductError = createSelector(getProductState, state => state.error);
+
+
 export const getProductByIdSelector = (productId: number) => createSelector(getProductState, (state) => {
     return state.productList.find(x => x.id === productId);
 });
